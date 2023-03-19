@@ -14,23 +14,23 @@ import java.util.*;
 @Component
 public class CriteriaUtil {
 
-    public <T> void buildCriteriaQuery(DataCriteria<T> DataCriteria, CriteriaQuery<T> criteriaQuery, CriteriaBuilder cb, Root<T> root, boolean isCountQuery) {
-        Map<String, Join> joins = setJoins(DataCriteria, root, isCountQuery);
+    public <T> void buildCriteriaQuery(DataCriteria<T> dataCriteria, CriteriaQuery<T> criteriaQuery, CriteriaBuilder cb, Root<T> root, boolean isCountQuery) {
+        Map<String, Join> joins = setJoins(dataCriteria, root, isCountQuery);
 
-        populateCriteria(DataCriteria, criteriaQuery, cb, root, joins);
+        populateCriteria(dataCriteria, criteriaQuery, cb, root, joins);
 
-        setSorts(DataCriteria, criteriaQuery, cb, root, joins);
+        setSorts(dataCriteria, criteriaQuery, cb, root, joins);
     }
 
-    public <T> void buildCountQuery(DataCriteria<T> DataCriteria, CriteriaQuery criteriaQuery, CriteriaBuilder cb, Root<T> root, boolean isCountQuery) {
-        Map<String, Join> joins = setJoins(DataCriteria, root, isCountQuery);
+    public <T> void buildCountQuery(DataCriteria<T> dataCriteria, CriteriaQuery criteriaQuery, CriteriaBuilder cb, Root<T> root, boolean isCountQuery) {
+        Map<String, Join> joins = setJoins(dataCriteria, root, isCountQuery);
 
-        populateCriteria(DataCriteria, criteriaQuery, cb, root, joins);
+        populateCriteria(dataCriteria, criteriaQuery, cb, root, joins);
     }
 
-    private <T> Map<String, Join> setJoins(DataCriteria<T> DataCriteria, Root<T> root, boolean isCountQuery) {
+    private <T> Map<String, Join> setJoins(DataCriteria<T> dataCriteria, Root<T> root, boolean isCountQuery) {
         Map<String, Join> aliasJoins = new HashMap<>();
-        for (FieldJoin fieldJoin : DataCriteria.getJoinList()) {
+        for (FieldJoin fieldJoin : dataCriteria.getJoinList()) {
             JoinType joinType = JoinType.LEFT;
             if (fieldJoin.getJoinType() == JoinType.INNER) {
                 joinType = JoinType.INNER;

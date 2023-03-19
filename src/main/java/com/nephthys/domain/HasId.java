@@ -2,8 +2,8 @@ package com.nephthys.domain;
 
 import java.io.Serializable;
 
-public interface HasId<I> extends Serializable {
-    I getId();
+public interface HasId<ID> extends Serializable {
+    ID getId();
 
-    void setId(I id);
+    void setId(ID id);
 }

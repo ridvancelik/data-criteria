@@ -19,10 +19,8 @@ public class DataCriteria<T> implements DataCriterion {
     private T entity;
     private Integer firstResult;
     private Integer maxResults;
-
     private boolean paging = false;
     private Pageable pageable;
-
     private boolean distinctRoot = false;
 
     private List<DataCriterion> criterions = new ArrayList<>();
